@@ -5,7 +5,7 @@ class PaytmRefundCron(CronJobBase):
     """
         PAYTM refund cron
     """
-    RUN_EVERY_MINS = 1  # every 2 Mins
+    RUN_EVERY_MINS = 5  # every 5 Mins
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'cron_apps.paytm.refund_cron'    # a unique code

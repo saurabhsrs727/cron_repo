@@ -3,7 +3,7 @@ from cron_apps.paytm.models import *
 from cron_apps.paytm.paytm_utils import PayTMAPIs
 import logging
 import json
-LOGGER = logging.getLogger("cron_apps.paytm.paytm_crons_utils")
+LOGGER = logging.getLogger(__name__)
 
 
 class PaytmCronsUtils(object):
