@@ -1,2 +1,4 @@
 django==1.11
 MySQL-python==1.2.5
+pycrypto==2.6.1
+django-cron==0.5.0
