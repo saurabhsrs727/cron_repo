@@ -27,7 +27,7 @@ DEBUG = True
 
 # import settings from JSON config
 PROJECT_SETTINGS_FILE = os.path.join(BASE_DIR, "conf", "pre_production_server.json")
-CUSTOM_SETTINGS_FILE = os.path.join("/etc/myplex/myplex_service", "myplex_service.json")
+CUSTOM_SETTINGS_FILE = os.path.join("/etc/myplex/myplex_service", "myplex_cron_service.json")
 if os.path.exists(CUSTOM_SETTINGS_FILE):
     JSON_SETTINGS_FILE = CUSTOM_SETTINGS_FILE
 else:
