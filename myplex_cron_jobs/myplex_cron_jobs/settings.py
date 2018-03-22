@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-
+import json
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,6 +25,15 @@ SECRET_KEY = '(51%gqtrewdzro8(esv8&a9s5^ph@0abiv#bjhs^d&02ms&0y6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# import settings from JSON config
+PROJECT_SETTINGS_FILE = os.path.join(BASE_DIR, "conf", "pre_production_server.json")
+CUSTOM_SETTINGS_FILE = os.path.join("/etc/myplex/myplex_service", "myplex_service.json")
+if os.path.exists(CUSTOM_SETTINGS_FILE):
+    JSON_SETTINGS_FILE = CUSTOM_SETTINGS_FILE
+else:
+    JSON_SETTINGS_FILE = PROJECT_SETTINGS_FILE
+JSON_SETTINGS = json.loads(open(JSON_SETTINGS_FILE).read())
+
 ALLOWED_HOSTS = []
 
 
@@ -37,6 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cron_apps.myplex_user',
+    'cron_apps.paytm',
+    'django_cron',
 ]
 
 MIDDLEWARE = [
@@ -73,12 +85,7 @@ WSGI_APPLICATION = 'myplex_cron_jobs.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+DATABASES = JSON_SETTINGS['DATABASES']
 
 
 # Password validation
@@ -118,3 +125,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# PAYTM SETTINGS
+PAYTM_SETTINGS = JSON_SETTINGS['PAYTM_SETTINGS']
+
+# CRON CLASSES
+CRON_CLASSES = [
+    "cron_apps.paytm.crons.PaytmRefundCron",
+
+]
+# Import Local settings
+try:
+    from myplex_cron_jobs.local_settings import *
+except Exception:
+    pass

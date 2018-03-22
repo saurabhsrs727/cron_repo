@@ -1,0 +1,31 @@
+{
+  "DATABASES": {
+    "default": {
+      "ENGINE": "django.db.backends.mysql",
+      "NAME": "myplex_service",
+      "USER": "app_user",
+      "PASSWORD": "Asun09networKDB",
+      "HOST": "prepoddb.cihebtldfl6n.ap-south-1.rds.amazonaws.com",
+      "PORT": "3306"
+    }
+  },
+  "PAYTM_SETTINGS": {
+	  "MID": "SUNTVN34722782923744",
+	  "WEBSITE": "SUNTWEB",
+	  "MERCHANT_KEY": "pR9qjIDOak_Tnta4",
+	  "CHANNEL_ID": "WEB",
+	  "INDUSTRY_TYPE_ID": "GovtUtility",
+	  "TRANS_REQ_URL": "https://secure.paytm.in/oltp-web/processTransaction",
+	  "TRANS_STATUS_URL": "https://secure.paytm.in/oltp/HANDLER_INTERNAL/getTxnStatus",
+	  "REFUND_URL": "https://secure.paytm.in/oltp/HANDLER_INTERNAL/REFUND",
+	  "CALLBACK_URL": "https://api.sunnxt.in/paytm/transaction/response/",
+	  "PACKS_SETTINGS": {"monthly": {"subs_frequency": 30,
+	                                 "subs_frequency_unit": "DAY"},
+	                     "quarterly": {"subs_frequency": 90,
+	                                   "subs_frequency_unit": "DAY"},
+	                     "annual": {"subs_frequency": 365,
+	                                "subs_frequency_unit": "DAY"}
+      },
+      "SUBS_EXPIRY_DATE": "2020-12-31"
+  }
+}
